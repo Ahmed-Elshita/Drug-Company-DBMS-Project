@@ -1,0 +1,85 @@
+5-
+
+SELECT  id , name , address , age , doctor_id , id ||  ' '|| ':' ||' '|| name as 'patient Information'
+FROM Patient
+
+===========================================================
+
+6-
+
+SELECT Drug_trade_name , avg(price)
+FROM Drug_Pharmacy_sales
+GROUP by Drug_trade_name
+
+=======================================================
+7-
+
+SELECT name 
+FROM Patient p
+JOIN Doctor_Drug_Suggest d
+on d.patient_id == p.id 
+WHERE d.Drug_trade_name == 'Panadol'
+
+=========================================================
+8-
+
+SELECT Drug_trade_name , p.name as pharmacy_name , max(price) 
+	FROM Drug_Pharmacy_sales
+	JOIN Pharmacy p
+	on  p.id == pharmacy_id
+	GROUP by Drug_trade_name
+HAVING pharmacy_name like ('%al%')
+
+
+==========================================================
+9-
+
+SELECT name , address 
+FROM Pharmacy
+JOIN Drug_Pharmacy_sales d
+on id == d.pharmacy_id
+WHERE d.Drug_trade_name == 'Tramadol'
+
+========================================
+10-
+
+SELECT d.name ,count(patient_id)
+FROM Doctor_Drug_Suggest
+JOIN Doctor d
+on d.id == doctor_id
+GROUP by d.name
+
+===================================
+11-
+
+SELECT Drug_trade_name , price
+FROM Drug_Pharmacy_sales
+WHERE price BETWEEN (SELECT min(price) FROM Drug_Pharmacy_sales) AND  (SELECT avg(price) FROM Drug_Pharmacy_sales)
+
+=========================================
+
+12-
+
+SELECT name , age 
+FROM Patient 
+where age >20 and age != 25 and age !=30
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
